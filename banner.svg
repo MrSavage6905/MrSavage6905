@@ -1,0 +1,103 @@
+<svg width="900" height="220" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00F0FF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00F0FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="900" height="220" fill="url(#bg)"/>
+
+  <!-- faint grid -->
+  <g stroke="#132030" stroke-width="1">
+    <line x1="0" y1="40" x2="900" y2="40"/>
+    <line x1="0" y1="80" x2="900" y2="80"/>
+    <line x1="0" y1="140" x2="900" y2="140"/>
+    <line x1="0" y1="180" x2="900" y2="180"/>
+    <line x1="60" y1="0" x2="60" y2="220"/>
+    <line x1="200" y1="0" x2="200" y2="220"/>
+    <line x1="700" y1="0" x2="700" y2="220"/>
+    <line x1="840" y1="0" x2="840" y2="220"/>
+  </g>
+
+  <!-- circuit traces left -->
+  <g fill="none" stroke="#1e3a4a" stroke-width="2">
+    <path d="M0,40 H60 L80,60 V110 L60,130 H0"/>
+    <path d="M0,180 H100 L120,160 H200"/>
+    <path d="M30,0 V20 L50,40"/>
+    <circle cx="60" cy="40" r="4" fill="#0d1520" stroke="#2a5a70"/>
+    <circle cx="80" cy="110" r="4" fill="#0d1520" stroke="#2a5a70"/>
+    <circle cx="120" cy="160" r="4" fill="#0d1520" stroke="#2a5a70"/>
+  </g>
+
+  <!-- circuit traces right -->
+  <g fill="none" stroke="#1e3a4a" stroke-width="2">
+    <path d="M900,40 H840 L820,60 V110 L840,130 H900"/>
+    <path d="M900,180 H800 L780,160 H700"/>
+    <path d="M870,0 V20 L850,40"/>
+    <circle cx="840" cy="40" r="4" fill="#0d1520" stroke="#2a5a70"/>
+    <circle cx="820" cy="110" r="4" fill="#0d1520" stroke="#2a5a70"/>
+    <circle cx="780" cy="160" r="4" fill="#0d1520" stroke="#2a5a70"/>
+  </g>
+
+  <!-- animated pulse traveling along left trace -->
+  <circle r="4" fill="#00F0FF" filter="url(#softGlow)">
+    <animateMotion dur="4s" repeatCount="indefinite"
+      path="M0,40 H60 L80,60 V110 L60,130 H0 Z"/>
+  </circle>
+  <circle r="4" fill="#00F0FF" filter="url(#softGlow)">
+    <animateMotion dur="3.2s" repeatCount="indefinite" begin="0.6s"
+      path="M900,40 H840 L820,60 V110 L840,130 H900 Z"/>
+  </circle>
+  <circle r="3" fill="#00F0FF" filter="url(#softGlow)" opacity="0.8">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="1s"
+      path="M0,180 H100 L120,160 H200"/>
+  </circle>
+  <circle r="3" fill="#00F0FF" filter="url(#softGlow)" opacity="0.8">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.4s"
+      path="M900,180 H800 L780,160 H700"/>
+  </circle>
+
+  <!-- scanning glow line -->
+  <rect x="0" y="0" width="900" height="2" fill="url(#glow)" opacity="0.6">
+    <animate attributeName="y" values="0;218;0" dur="6s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- main text -->
+  <text x="450" y="105" text-anchor="middle" font-family="Fira Code, monospace"
+        font-size="46" font-weight="700" fill="#00F0FF" filter="url(#textGlow)">
+    Srivathsan S S
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- subtitle -->
+  <text x="450" y="140" text-anchor="middle" font-family="Fira Code, monospace"
+        font-size="17" fill="#7fdfe8" opacity="0.9">
+    &lt;/&gt; Embedded Systems &amp; Edge AI Engineer
+  </text>
+
+  <!-- blinking cursor -->
+  <rect x="638" y="126" width="10" height="18" fill="#00F0FF">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </rect>
+</svg>
